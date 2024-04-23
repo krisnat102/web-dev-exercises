@@ -12,10 +12,37 @@ body {
 
 h1 {
   font-size: 5rem;
+  
 }
 
 footer {
   text-align: right;
   color: midnightblue;
 }
+
+.tile-image{
+  margin: 20px;
+  height: 150px;
+}
+
+.card{
+  display: flex;
+}
+
+#content{
+  display: flex;
+}
+
+@media (max-width: 900px){
+  #content{
+    display:block;
+  }
+}
+
+@media (max-width: 500px){
+  .card{
+    display: block;
+  }
+}
+
 
