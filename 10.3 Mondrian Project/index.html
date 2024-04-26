@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mondrian Project</title>
-  <style>
-    /* 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mondrian Project</title>
+    <style>
+      /* 
     Write your CSS here 
     Gap Colour: #000
     White: #F0F1EC
@@ -19,33 +18,81 @@
     HINT: Remember you can't change the properties of grid lines.
     But grid lines are transparent!
     */
-    .item{
-      background-color: #F0F1EC;
-    }
+      .item {
+        background-color: #f0f1ec;
+      }
 
-    .grid{
-      display: grid;
-      height: 748px;
-      width: 748px;
-      gap: 9px;
-    }
+      .grid {
+        display: grid;
+        height: 748px;
+        width: 748px;
+        gap: 9px;
+        grid-template-columns: 320px 198px 153px 50px;
+        grid-template-rows: 414px 130px 155px 20px;
+      }
 
-  </style>
-</head>
+      #red {
+        background-color: #e72f24;
+        grid-area: 1 / 1 / 2 / 2;
+      }
 
-<body>
-  <div class="grid">
-    <div class="item red"></div>
-    <div class="item yellow"></div>
-    <div class="item blue"></div>
-    <div class="item grey"></div>
-    <div class="item black"></div>
-    <div class="item light1"></div>
-    <div class="item light2"></div>
-    <div class="item light3"></div>
-    <div class="item light4"></div>
-    <div class="item light5"></div>
-  </div>
-</body>
+      #yellow {
+        background-color: #f9d01e;
+        grid-area: 4 / 2 / 5 / 3;
+      }
 
+      #grey {
+        background-color: #232629;
+        grid-area: 4 / 3 / 5 / 4;
+      }
+
+      #blue {
+        background-color: #004592;
+        grid-area: 2 / 4 / 2 / 5;
+        border-bottom: black solid 10px;
+      }
+
+      #light1 {
+        grid-area: 1 / 2 / 1 / 5;
+      }
+
+      #light2 {
+        grid-area: 2 / 1 / 4 / 2;
+      }
+
+      #light3 {
+        grid-area: 2 / 2 / 4 / 4;
+      }
+
+      #light4 {
+        grid-area: 3 / 4 / 5 / 5;
+      }
+
+      #light5 {
+        grid-area: 4 / 1 / 5 / 2;
+      }
+
+      #background {
+        grid-area: 1 / 1 / 5 / 5;
+        background-color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="lines"></div>
+    <div class="grid">
+      <div class="item" id="background"></div>
+      <div class="item" id="red"></div>
+      <div class="item" id="black"></div>
+      <div class="item" id="light1"></div>
+      <div class="item" id="light2"></div>
+      <div class="item" id="light3"></div>
+      <div class="item" id="light4"></div>
+      <div class="item" id="light5"></div>
+      <div class="item" id="blue"></div>
+      <div class="item" id="yellow"></div>
+      <div class="item" id="grey"></div>
+    </div>
+  </body>
 </html>
