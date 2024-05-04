@@ -1,0 +1,102 @@
+#header{
+    background-color: aquamarine;
+}
+
+#skills{
+    background: rgb(220, 241, 233)
+}
+
+#footer{
+    background-color: aquamarine;
+}
+
+#body{
+    background-color: rgb(230, 247, 240);
+}
+
+#greetings{
+    font-size: 2.5em;
+    color: #70dab6;
+}
+
+#greetings-sub{
+    font-size: 1.2em;
+    color: #2c5547;
+}
+
+#testimonial{
+    padding-bottom: 6em;
+}
+
+#picture1{
+    grid-area: 2 / 1 / 2 / 1;
+    text-align: center;
+}
+
+#picture2{
+    grid-area: 3 / 1 / 3 / 1;
+    text-align: center;
+}
+
+#text1{
+    grid-area: 2 / 2 / 2 / 2;
+    text-align: left;
+}
+
+#text2{
+    grid-area: 3 / 2 / 3 / 2;
+}
+
+@media screen and (max-width: 350px){
+    #pc-image{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px){
+    #picture1{
+        grid-area: 2 / 1 / 2 / 1;
+    }
+    
+    #picture2{
+        grid-area: 4 / 1 / 4 / 1;
+    }
+    
+    #text1{
+        grid-area: 3 / 1 / 3 / 1;
+        text-align: center;
+    }
+    
+    #text2{
+        grid-area: 5 / 1 / 5 / 1;
+        text-align: center;
+    }
+}
+
+.title{
+
+}
+
+.subtitle{
+    
+}
+
+.skills-grid{
+    display: grid;
+    grid-template-columns: 2 3;
+    grid-template-rows: 1 1 1 1 1;
+    gap: 40px;
+}
+
+.head2{
+    text-align: center;
+    font-size: 2.5em !important;
+    font-weight: bolder !important;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    color: #70dab6 !important;
+}
+
+.sub-head2{
+    font-size: 1.2em !important;
+    color: #2c5547 !important;
+}
