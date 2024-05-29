@@ -1,10 +1,13 @@
 import express from "express";
+import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
 
 var posts = [];
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
@@ -36,13 +39,15 @@ app.get("/about", (req, res) => {
     
 })
 
-app.delete("/delete/:id", (req, res) => {
-    const postId = req.params.id;
-    if (postId >= 0 && postId < posts.length) {
-        posts = posts.filter((_, index) => index != postId);
-        res.status(200).json({ message: "Post deleted" });
+app.post('/submit-post-id', (req, res) => {
+    const postId = req.body.postId;
+    console.log(postId);
+    
+    if (posts[postId]) {
+        delete posts[postId];
+        res.json({ status: 'success', postId: postId });
     } else {
-        res.status(404).json({ message: "Post not found" });
+        res.status(404).json({ status: 'error', message: 'Post not found' });
     }
 });
 
