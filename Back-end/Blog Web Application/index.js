@@ -39,15 +39,24 @@ app.get("/about", (req, res) => {
     
 })
 
-app.post('/submit-post-id', (req, res) => {
+app.post('/delete-post-id', (req, res) => {
     const postId = req.body.postId;
-    console.log(postId);
+    console.log(posts.length);
     
     if (posts[postId]) {
-        delete posts[postId];
+        posts[postId] = 0;
+
         res.json({ status: 'success', postId: postId });
     } else {
         res.status(404).json({ status: 'error', message: 'Post not found' });
+    }
+});
+
+app.post('/edit-post-id', (req, res) => {
+    const postId = req.body.postId;
+    
+    if (posts[postId]) {
+        console.log(1);
     }
 });
 

@@ -16,7 +16,8 @@
 
         <ul id="blog-list">
             <% if(locals.posts){ 
-                for(let i=0; i < posts.length; i++) { %>
+                for(let i=0; i < posts.length; i++) {
+                    if(posts[i] != 0) { %>
                     <li>
                         <div class="feature col post" id="post-<%= i %>">
                             <h3 class="fs-2 text-body-emphasis"><%= posts.name %></h3>
@@ -37,7 +38,8 @@
                             </a>
                         </div>
                     </li>
-                <% } 
+                    <% }
+                } 
             } %>
         </ul>
 
@@ -48,37 +50,10 @@
                 crossorigin="anonymous"></script>
 
     <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const deleteLinks = document.querySelectorAll('.delete-link');
-        //     deleteLinks.forEach(link => {
-        //         link.addEventListener('click', function(event) {
-        //             event.preventDefault();
-        //             const postId = this.getAttribute('data-post-id');
-
-        //             fetch(`/delete/${postId}`, {
-        //                 method: 'DELETE',
-        //             })
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 if (data.message === "Post deleted") {
-        //                     const postElement = document.getElementById(`post-${postId}`);
-        //                     if (postElement) {
-        //                         postElement.remove();
-        //                     }
-        //                 } else {
-        //                     console.error("Failed to delete post");
-        //                 }
-        //             })
-        //             .catch(error => console.error("Error:", error));
-        //         });
-        //     });
-        // });
-
         $(document).ready(function() {
             $('.delete-link').click(function(event) {
                 event.preventDefault();
                 const postId = $(this).data('post-id');
-                console.log(postId);
 
                 const postElement = document.getElementById(`post-${postId}`);
                 if (postElement) {
@@ -87,7 +62,26 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/submit-post-id',
+                    url: '/delete-post-id',
+                    data: { postId: postId },
+                    success: function(response) {
+                        console.log('Server response:', response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', status, error);
+                    }
+                });
+            });
+
+            $('.edit-link').click(function(event) {
+                event.preventDefault();
+                const postId = $(this).data('post-id');
+
+                const postElement = document.getElementById(`post-${postId}`);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/edit-post-id',
                     data: { postId: postId },
                     success: function(response) {
                         console.log('Server response:', response);
