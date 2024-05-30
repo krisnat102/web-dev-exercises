@@ -56,7 +56,7 @@ app.post('/edit-post-id', (req, res) => {
     const postId = req.body.postId;
     
     if (posts[postId]) {
-        console.log(1);
+        
     }
 });
 
