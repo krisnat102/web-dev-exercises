@@ -20,11 +20,11 @@
                     if(posts[i] != 0) { %>
                     <li>
                         <div class="feature col post" id="post-<%= i %>">
-                            <h3 class="fs-2 text-body-emphasis"><%= posts.name %></h3>
+                            <h3 class="fs-2 text-body-emphasis"><%= posts[i].name %></h3>
                             <p class="content">
-                                <%= posts.content %>
+                                <%= posts[i].content %>
                             </p>
-                            <a href="/edit" class="icon-link edit-link" action="/edit" method="GET" data-post-id="<%= i %>">
+                            <a href="/edit" class="icon-link edit-link" action="/edit" method="POST" data-post-id="<%= i %>">
                                 Edit
                                 <svg class="bi">
                                     <use xlink:href="#chevron-right"></use>

@@ -6,6 +6,9 @@ const port = 3000;
 
 var posts = [];
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -41,10 +44,9 @@ app.get("/about", (req, res) => {
 
 app.post('/delete-post-id', (req, res) => {
     const postId = req.body.postId;
-    console.log(posts.length);
     
     if (posts[postId]) {
-        posts[postId] = 0;
+        posts[postId] = 0; // Add a way to get rid of the 0s
 
         res.json({ status: 'success', postId: postId });
     } else {
@@ -54,9 +56,16 @@ app.post('/delete-post-id', (req, res) => {
 
 app.post('/edit-post-id', (req, res) => {
     const postId = req.body.postId;
-    
-    if (posts[postId]) {
-        
+
+    if (postId !== undefined && posts[postId]) {
+        console.log(1);
+        res.render("editBlog.ejs", 
+        {
+            posts: posts,
+            postId: postId
+        });
+    } else {
+        res.status(404).send('Post not found');
     }
 });
 
