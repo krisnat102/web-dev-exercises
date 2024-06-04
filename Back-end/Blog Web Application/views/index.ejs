@@ -24,7 +24,7 @@
                             <p class="content">
                                 <%= posts[i].content %>
                             </p>
-                            <a href="/edit" class="icon-link edit-link" action="/edit" method="POST" data-post-id="<%= i %>">
+                            <a href="/edit?postId=<%= i %>" class="icon-link edit-link" action="/edit" method="GET" data-post-id="<%= i %>">
                                 Edit
                                 <svg class="bi">
                                     <use xlink:href="#chevron-right"></use>
@@ -61,7 +61,7 @@
                 }
 
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: '/delete-post-id',
                     data: { postId: postId },
                     success: function(response) {
@@ -81,7 +81,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/edit-post-id',
+                    url: '/edit',
                     data: { postId: postId },
                     success: function(response) {
                         console.log('Server response:', response);

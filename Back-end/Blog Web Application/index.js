@@ -54,11 +54,10 @@ app.post('/delete-post-id', (req, res) => {
     }
 });
 
-app.post('/edit-post-id', (req, res) => {
-    const postId = req.body.postId;
+app.get('/edit', (req, res) => {
+    const postId = req.query.postId;
 
     if (postId !== undefined && posts[postId]) {
-        console.log(1);
         res.render("editBlog.ejs", 
         {
             posts: posts,

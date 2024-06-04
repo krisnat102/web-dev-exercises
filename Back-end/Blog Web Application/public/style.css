@@ -13,3 +13,9 @@
     padding: 10px;
     margin: 10px;
 }
+
+.edit-box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
