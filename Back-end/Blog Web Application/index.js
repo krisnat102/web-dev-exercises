@@ -30,11 +30,12 @@ app.get("/create", (req, res) => {
     });
 })
 
-app.get("/view", (req, res) => {
-    
-})
+app.post("/submit", (req, res) => {
+    letters = req.body["name"].length + req.body["content"].length;
+    console.log(letters);
+});
 
-app.put("/edit", (req, res) => {
+app.get("/view", (req, res) => {
     
 })
 
