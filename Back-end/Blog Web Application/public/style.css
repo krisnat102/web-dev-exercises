@@ -14,8 +14,6 @@
     margin: 10px;
 }
 
-.edit-box{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.mid-margin{
+    margin: 10px;
 }
