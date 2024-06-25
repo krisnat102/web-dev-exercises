@@ -9,19 +9,89 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
 
+app.get("/random", (req, res) => {
+  var joke = jokes[Math.floor(Math.random() * jokes.length)];
+  res.json(joke);
+})
+
 //2. GET a specific joke
+app.get("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const joke = jokes.find((joke) => joke.id === id);
+  res.json(joke);
+})
 
 //3. GET a jokes by filtering on the joke type
+app.get("/filter", (req, res) => {
+  const type = req.query.type;
+  const filteredJokes = jokes.filter((joke) => joke.jokeType == type);
+  res.json(filteredJokes);
+})
 
 //4. POST a new joke
+app.post("/jokes", (req, res) => {
+  var newJoke = {
+    id: jokes.length + 1,
+    jokeText: req.body.text,
+    jokeType: req.body.type
+  }
+  jokes.push(newJoke);
+  res.json(newJoke);
+})
 
 //5. PUT a joke
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  var joke = {
+    id: id,
+    jokeText: req.body.text,
+    jokeType: req.body.type
+  }
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  jokes[searchIndex] = joke;
+  res.json(joke);
+})
 
 //6. PATCH a joke
+app.patch("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const joke = jokes.find((joke) => joke.id === id);
+  if(req.body.text){
+    joke.jokeText = req.body.text;
+  }
+  if(req.body.type){
+    joke.jokeType = req.body.type;
+  }
+
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  jokes[searchIndex] = joke;
+  res.json(joke);
+})
 
 //7. DELETE Specific joke
+app.delete("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  
+  if(searchIndex > -1) {
+    jokes.splice(searchIndex, 1);
+    res.sendStatus(200);
+  }
+  else{
+    res.status(404);
+  }
+})
 
 //8. DELETE All jokes
+app.delete("/all", (req, res) => {
+  if(req.query.key === masterKey){
+    jokes = [];
+    res.sendStatus(200);
+  }
+  else{
+    res.status(404);
+  }
+})
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
@@ -599,3 +669,17 @@ var jokes = [
     jokeType: "Food",
   },
 ];
+
+var removeByAttr = function(arr, attr, value){
+  var i = arr.length;
+  while(i--){
+     if( arr[i] 
+         && arr[i].hasOwnProperty(attr) 
+         && (arguments.length > 2 && arr[i][attr] === value ) ){ 
+
+         arr.splice(i,1);
+
+     }
+  }
+  return arr;
+}
